@@ -203,13 +203,13 @@ class Ping
      *
      * @throws InvalidArgumentException if $method is not supported.
      */
-    public function ping($method = 'exec')
+    public function ping($laravel = false, $method = 'exec')
     {
         $latency = false;
 
         switch ($method) {
             case 'exec':
-                $latency = $this->pingExec();
+                $latency = $this->pingExec($laravel);
                 break;
 
             case 'fsockopen':
@@ -236,7 +236,7 @@ class Ping
      * @return float
      *   Latency, in ms.
      */
-    private function pingExec($laravel = false)
+    private function pingExec($laravel)
     {
         $latency = false;
 
